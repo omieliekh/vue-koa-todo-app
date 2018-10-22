@@ -1,11 +1,10 @@
+/* eslint-disable no-console */
 const Koa = require('koa');
 const app = new Koa();
 
-app.use(async ctx => {
-  ctx.body = 'Hello World';
-});
+const encodeDecode = require('./encode-decode');
+
+app.use(encodeDecode);
 
 app.listen(3000);
-
-// eslint-disable-next-line no-console
 console.log('running on http://localhost:3000');
