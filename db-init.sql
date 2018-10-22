@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS `users` (
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`name`	TEXT NOT NULL,
+	`email`	TEXT NOT NULL UNIQUE,
+	`passw`	TEXT
+);
+CREATE TABLE IF NOT EXISTS `todos` (
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`user_id`	INTEGER NOT NULL,
+	`descr`	TEXT NOT NULL,
+	`checked`	INTEGER NOT NULL,
+	`datetime`	INTEGER NOT NULL
+);
+
+-- '81dc9bdb52d04dc20036dbd8313ed055' => md5 hash of '1234'
+INSERT OR IGNORE INTO users (id, name, email, passw)
+  VALUES (1, "John Doe", "admin@gmail.com", "81dc9bdb52d04dc20036dbd8313ed055");
+
+COMMIT;
