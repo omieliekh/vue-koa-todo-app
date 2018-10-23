@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "jsonwebtoken": "^8.3.0",
     "koa": "^2.5.3",
+    "koa-body": "^4.0.4",
     "koa-router": "^7.4.0",
     "nodemon": "^1.18.4",
     "sqlite3": "^4.0.2",
