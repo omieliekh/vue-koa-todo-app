@@ -36,18 +36,22 @@ function decode(obj) {
   return process('decode', obj)
 }
 
-module.export = async (ctx, next) => {
-  if (ctx.params) {
-    encode(ctx.params)
-  }
+function encodeDecode() {
+  return async (ctx, next) => {
+    if (ctx.params) {
+      encode(ctx.params)
+    }
 
-  if (ctx.request.body) {
-    encode(ctx.request.body)
-  }
+    if (ctx.request.body) {
+      encode(ctx.request.body)
+    }
 
-  await next();
+    await next();
 
-  if (ctx.body && typeof ctx.body !== 'string') {
-    decode(ctx.body)
-  }
-};
+    if (ctx.body && typeof ctx.body !== 'string') {
+      decode(ctx.body)
+    }
+  };
+}
+
+module.exports = encodeDecode;
