@@ -31,10 +31,27 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+
+  mounted: function () {
+    this.test();
+  },
+
+  methods: {
+    test() {
+      this.$http.get('/api/test', {
+        params: {}
+      })
+        .then(res => {
+          console.log('res.body: ', res.body);
+        })
+        .catch(console.error);
+    }
   }
 }
 </script>

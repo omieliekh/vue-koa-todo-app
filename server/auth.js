@@ -29,6 +29,19 @@ async function getUserDetails(email, hashPassword) {
 }
 
 router
+  .get('/test', async ctx => {
+    ctx.type = 'application/json';
+
+    try {
+      ctx.body = {
+        qwe: 'test'
+      }
+    } catch (err) {
+      ctx.status = 401;
+      ctx.body = err.toString()
+    }
+  })
+
   .post('/login', async ctx => {
     const body = ctx.request.body;
     ctx.type = 'application/json';
