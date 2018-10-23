@@ -46,12 +46,13 @@ router
     const body = ctx.request.body;
     ctx.type = 'application/json';
 
-    const hashPassword = crypto.createHash('md5').update(body.password).digest("hex")
+    const email = decodeURIComponent(body.email);
+    const hashPassword = crypto.createHash('md5').update(body.password).digest("hex");
 
     try {
-      ctx.body = await getUserDetails(body.email, hashPassword)
+      ctx.body = await getUserDetails(email, hashPassword)
     } catch (err) {
-      ctx.status = 401
+      ctx.status = 401;
       ctx.body = err.toString()
     }
   })
