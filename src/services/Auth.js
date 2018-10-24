@@ -18,12 +18,12 @@ export default {
 
   login (creds) {
     return Vue.http.post('/api/login', creds)
-      .then(this._setUser.bind(this));
+      .then(res => this._setUser(res.body));
   },
 
   signup (userData) {
     return Vue.http.post('/api/sign-up', userData)
-      .then(this._setUser.bind(this));
+      .then(res => this._setUser(res.body));
   },
 
   logout () {
