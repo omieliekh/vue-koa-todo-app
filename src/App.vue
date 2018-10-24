@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container">
     <div id="nav">
+      <span v-if="Auth.user" class="greeting-message">Hello, {{ Auth.user.name }}!</span>
       <b-button
         v-if="Auth.user"
         @click="logout"
@@ -42,6 +43,10 @@
   #nav {
     margin-bottom: 10px;
     text-align: right;
+  }
+
+  .greeting-message {
+    margin-right: 0.5rem;
   }
 
   .logout-btn {
