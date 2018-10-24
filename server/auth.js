@@ -6,7 +6,7 @@ const { query } = require('./db');
 const SUPER_SECRET = 'change-this';
 
 const router = Router({
-  prefix: '/api'
+  prefix: ''
 });
 
 async function getUserDetails(email, hashPassword) {
@@ -29,7 +29,7 @@ async function getUserDetails(email, hashPassword) {
 }
 
 router
-  .get('/test', async ctx => {
+  .get('/api/test', async ctx => {
     ctx.type = 'application/json';
 
     try {
@@ -42,7 +42,7 @@ router
     }
   })
 
-  .post('/login', async ctx => {
+  .post('/api/login', async ctx => {
     const body = ctx.request.body;
     ctx.type = 'application/json';
 
@@ -57,7 +57,7 @@ router
     }
   })
 
-  .post('/sign-up', async ctx => {
+  .post('/api/sign-up', async ctx => {
     const body = ctx.request.body;
 
     try {
@@ -73,7 +73,7 @@ router
     }
   })
 
-  .post('/check-auth', async ctx => {
+  .post('/api/check-auth', async ctx => {
     const token = encodeURIComponent(ctx.request.body.token);
     ctx.state.user = verify(token, SUPER_SECRET);
     ctx.body = {
@@ -90,7 +90,7 @@ router
 
       return next();
     } catch (err) {
-      ctx.body = 'Uknown user';
+      ctx.body = 'Unknown user';
       ctx.status = 401;
 
     }
