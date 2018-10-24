@@ -18,12 +18,15 @@
     </b-row>
     <b-row v-for="todo in todos" class="todo">
       <b-col class="todo-checkbox">
-        <b-form-checkbox v-model="todo.isDone"></b-form-checkbox>
+        <b-form-checkbox
+          v-model="todo.checked"
+          @change="updateTodo(todo)"
+        ></b-form-checkbox>
       </b-col>
       <b-col
         cols="8"
         class="todo-description"
-        :class="{ 'is-done': todo.isDone }">
+        :class="{ 'is-done': todo.checked }">
         {{ todo.description }}
       </b-col>
 
@@ -31,7 +34,7 @@
         <b-button
           size="sm"
           variant="danger"
-          @click="deleteTodo(todo)"
+          @click="removeTodo(todo)"
         >X</b-button>
       </b-col>
     </b-row>
@@ -45,20 +48,20 @@ export default {
   data() {
     return {
       todoDescr: '',
-      todos: [
-        {
-          description: 'First',
-          isDone: false
-        },
-        {
-          description: 'Second',
-          isDone: true
-        }
-      ]
+      todos: []
     };
   },
 
+  mounted () {
+    this.getTodos();
+  },
+
   methods: {
+    getTodos () {
+      this.$http.get('/api/todos')
+        .then(({ body: todos }) => this.todos = todos);
+    },
+
     addTodo () {
       const description = this.todoDescr.trim();
 
@@ -66,17 +69,31 @@ export default {
         return;
       }
 
-      this.todos.unshift({
+      this.$http.post(`/api/todos`, {
         description,
-        isDone: false
+        checked: false
+      })
+        .then(({ body: todo }) => {
+        this.todos.push(todo);
+        this.todoDescr = '';
       });
     },
-    deleteTodo (todo) {
+
+    updateTodo (todo) {
+      setTimeout(() => {
+        this.$http.put(`/api/todos/${todo.id}`, todo);
+      });
+    },
+
+    removeTodo (todo) {
       const index = this.todos.indexOf(todo);
 
-      if (index !== -1) {
-        this.todos.splice(index, 1);
+      if (index === -1) {
+        return;
       }
+
+      this.$http.delete(`/api/todos/${todo.id}`)
+        .then(() => this.todos.splice(index, 1));
     }
   }
 }
