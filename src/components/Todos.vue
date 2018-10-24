@@ -1,5 +1,5 @@
 <template>
-  <b-container class="todos">
+  <div class="todos">
     <b-row>
       <b-col cols="6" offset="2">
         <b-form-input
@@ -38,7 +38,7 @@
         >X</b-button>
       </b-col>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
