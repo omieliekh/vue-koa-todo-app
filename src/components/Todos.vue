@@ -1,16 +1,18 @@
 <template>
   <div class="todos">
     <b-row>
-      <b-col cols="6" offset="2">
+      <b-col class="new-todo">
         <b-form-input
+          size="sm"
           v-model="todoDescr"
           @keyup.enter.native="addTodo"
           placeholder="Enter your task description ...">
         </b-form-input>
       </b-col>
-      <b-col cols="2">
+      <b-col class="add-todo">
         <b-button
           variant="primary"
+          size="sm"
           @click="addTodo"
           block
         >Add</b-button>
@@ -24,7 +26,6 @@
         ></b-form-checkbox>
       </b-col>
       <b-col
-        cols="8"
         class="todo-description"
         :class="{ 'is-done': todo.checked }">
         {{ todo.description }}
@@ -33,6 +34,7 @@
       <b-col class="todo-actions">
         <b-button
           size="sm"
+          block
           variant="danger"
           @click="removeTodo(todo)"
         >X</b-button>
@@ -104,16 +106,26 @@ export default {
     margin-bottom: 0.5rem;
   }
 
+  .new-todo {
+    width: calc(100% - 90px);
+  }
+
+  .add-todo {
+    max-width: 100px;
+  }
+
   .is-done {
     text-decoration: line-through;
   }
 
   .todo-description {
     text-align: left;
+    width: calc(100% - 119px);
   }
 
   .todo-checkbox {
     text-align: right;
+    max-width: 54px;
   }
 
   .todo-checkbox .custom-checkbox {
@@ -122,5 +134,6 @@ export default {
 
   .todo-actions {
     text-align: left;
+    max-width: 65px;
   }
 </style>
