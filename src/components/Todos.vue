@@ -15,6 +15,7 @@
           size="sm"
           @click="addTodo"
           block
+          :disabled="!todoDescr.trim()"
         >Add</b-button>
       </b-col>
     </b-row>
