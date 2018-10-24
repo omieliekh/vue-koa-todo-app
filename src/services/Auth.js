@@ -4,16 +4,20 @@ import router from '../router'
 export default {
   user: null,
 
-  _setUser: function (data) {
+  _setUser (data) {
     localStorage.setItem('auth_token', data.token);
     this.user = data.user;
     router.push('/');
   },
 
-  _unsetUser: function () {
+  _unsetUser () {
     localStorage.removeItem('auth_token');
     this.user = null;
     router.push('login');
+  },
+
+  init () {
+    this.checkAuth();
   },
 
   login (creds) {
@@ -59,4 +63,4 @@ export default {
 
     next();
   }
-}
+};
