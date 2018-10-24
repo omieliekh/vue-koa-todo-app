@@ -5,12 +5,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`email`	TEXT NOT NULL UNIQUE,
 	`passw`	TEXT
 );
+
 CREATE TABLE IF NOT EXISTS `todos` (
 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`user_id`	INTEGER NOT NULL,
-	`descr`	TEXT NOT NULL,
-	`checked`	INTEGER NOT NULL,
-	`datetime`	INTEGER NOT NULL
+	`description`	TEXT NOT NULL,
+	`checked`	INTEGER NOT NULL
 );
 
 -- '81dc9bdb52d04dc20036dbd8313ed055' => md5 hash of '1234'
