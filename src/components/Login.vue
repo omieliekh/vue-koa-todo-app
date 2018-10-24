@@ -62,5 +62,16 @@
 </script>
 
 <style scoped>
+  .login {
+    margin-top: 100px;
+    text-align: right;
+  }
 
+  input {
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    width: 70px;
+  }
 </style>

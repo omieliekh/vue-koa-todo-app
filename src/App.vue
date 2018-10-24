@@ -1,16 +1,38 @@
 <template>
   <div id="app" class="container">
     <div id="nav">
-      <router-link to="login">Login</router-link> |
-      <router-link to="/">Todos</router-link>
+      <b-button
+        v-if="Auth.user"
+        @click="logout"
+        variant="primary"
+        size="sm"
+        class="logout-btn"
+      >Logout</b-button>
     </div>
     <router-view/>
   </div>
 </template>
+<script>
+  import Auth from './services/Auth'
 
+  export default {
+    name: 'App',
+    data() {
+      return {
+        Auth
+      };
+    },
+
+    methods: {
+      logout () {
+        Auth.logout();
+      }
+    }
+  }
+</script>
 <style>
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
@@ -20,5 +42,9 @@
   #nav {
     margin-bottom: 10px;
     text-align: right;
+  }
+
+  .logout-btn {
+    width: 70px;
   }
 </style>
