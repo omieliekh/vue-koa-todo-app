@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { assert } from 'chai';
 
 export function tick() {
   return new Promise(resolve => setTimeout(resolve));
@@ -9,5 +9,5 @@ export function elementExists(wrapper, selector) {
 }
 
 export function elementNotExists(wrapper, selector) {
-  assert(!wrapper.find(selector).exists(), `'${selector}' element exists, but it shouldn\'t`);
+  assert(!wrapper.find(selector).exists(), `'${selector}' element exists, but it shouldn't`);
 }
