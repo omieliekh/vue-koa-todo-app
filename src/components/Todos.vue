@@ -77,9 +77,9 @@ export default {
         checked: false
       })
         .then(({ body: todo }) => {
-        this.todos.push(todo);
-        this.todoDescr = '';
-      });
+          this.todos.push(todo);
+          this.todoDescr = '';
+        });
     },
 
     updateTodo (todo) {
