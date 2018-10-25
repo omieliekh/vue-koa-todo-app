@@ -53,7 +53,7 @@ router
       ctx.body = await getUserDetails(email, hashPassword)
     } catch (err) {
       ctx.status = 401;
-      ctx.body = err.toString()
+      ctx.body = err.toString();
     }
   })
 
@@ -75,10 +75,13 @@ router
 
   .post('/api/check-auth', async ctx => {
     const token = encodeURIComponent(ctx.request.body.token);
-    ctx.state.user = verify(token, SUPER_SECRET);
+    const user = verify(token, SUPER_SECRET);
+
+    ctx.state.user = user;
     ctx.body = {
-      user: ctx.state.user
-    }
+      user,
+      token: sign(user, SUPER_SECRET),
+    };
   })
 
   // secured routes middleware
