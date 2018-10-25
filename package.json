@@ -30,6 +30,8 @@
     "@vue/cli-service": "^3.0.5",
     "@vue/test-utils": "^1.0.0-beta.25",
     "chai": "^4.2.0",
+    "eslint": "^5.7.0",
+    "eslint-plugin-vue": "^5.0.0-beta.3",
     "karma": "^3.1.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
