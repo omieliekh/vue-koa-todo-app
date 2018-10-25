@@ -3,17 +3,15 @@ import router from '../router';
 import store from './../store';
 
 export default {
-  user: null,
-
   _setUser (data) {
     localStorage.setItem('auth_token', data.token);
-    this.user = data.user;
+    store.commit('setUser', data.user);
     router.push('/');
   },
 
   _unsetUser () {
     localStorage.removeItem('auth_token');
-    this.user = null;
+    store.commit('setUser', null);
     router.push('login');
   },
 
@@ -45,14 +43,10 @@ export default {
 
     return Vue.http.post('/api/check-auth', { token })
       .then(({ data }) => {
-        if (data.user) {
-          this.user = data.user
-        } else {
-          this.user = null
-        }
+        data.user ? this._setUser(data) : this._unsetUser();
 
-        return data
-      })
+        return data;
+      });
   },
 
   authHeaderInterceptor (request, next) {

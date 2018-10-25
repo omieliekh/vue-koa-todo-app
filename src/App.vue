@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="container">
     <div id="nav">
-      <span v-if="Auth.user" class="greeting-message">Hello, {{ Auth.user.name }}!</span>
+      <span v-if="user" class="greeting-message">Hello, {{ user.name }}!</span>
       <b-button
-        v-if="Auth.user"
+        v-if="user"
         @click="logout"
         variant="primary"
         size="sm"
@@ -14,14 +14,15 @@
   </div>
 </template>
 <script>
-  import Auth from './services/Auth'
+  import Auth from './services/Auth';
 
   export default {
     name: 'App',
-    data() {
-      return {
-        Auth
-      };
+
+    computed: {
+      user () {
+        return this.$store.state.user;
+      }
     },
 
     methods: {
