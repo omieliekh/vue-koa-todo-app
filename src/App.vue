@@ -29,7 +29,7 @@
         Auth.logout();
       }
     }
-  }
+  };
 </script>
 <style>
   #app {

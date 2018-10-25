@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { mount } from '@vue/test-utils';
 import Todos from './Todos.vue';
 

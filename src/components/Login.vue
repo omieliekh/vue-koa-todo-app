@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import Auth from '../services/Auth'
+  import Auth from '../services/Auth';
 
   export default {
     name: 'login',
@@ -41,7 +41,7 @@
           password: ''
         },
         error: ''
-      }
+      };
     },
     methods: {
       onLogin: function (event) {
@@ -55,10 +55,10 @@
         })
         .catch(data => {
           this.error = data.data || data.body || data.bodyText;
-        })
+        });
       }
     }
-  }
+  };
 </script>
 
 <style scoped>

@@ -19,7 +19,7 @@
         >Add</b-button>
       </b-col>
     </b-row>
-    <b-row v-for="todo in todos" class="todo">
+    <b-row v-for="todo in todos" v-bind:key="todo.id" class="todo">
       <b-col class="todo-checkbox">
         <b-form-checkbox
           v-model="todo.checked"
@@ -99,7 +99,7 @@ export default {
         .then(() => this.todos.splice(index, 1));
     }
   }
-}
+};
 </script>
 
 <style scoped>
